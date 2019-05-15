@@ -130,7 +130,8 @@ hotspot_wbapitest = \
   sanity/
 
 hotspot_compiler = \
-  sanity/ExecuteInternalVMTests.java
+  sanity/ExecuteInternalVMTests.java \
+  compiler
 
 hotspot_gc = \
   sanity/ExecuteInternalVMTests.java \
@@ -263,3 +264,6 @@ compact1_minimal = \
  -:needs_compact3 \
  -:needs_jre \
  -:needs_jdk
+
+hotspot_vmtest = \
+  vmTestbase/jit/t/

@@ -226,7 +226,7 @@ all: hotspot_all
 # Unless explicitly defined below, hotspot_<x> is interpreted as a jtreg test group name
 hotspot_%:
 	$(ECHO) "Running tests: $@"
-	$(MAKE) -j 1 TEST_SELECTION=":$@" UNIQUE_DIR=$@ jtreg_tests;
+	$(MAKE) -j 1 TEST_SELECTION=":$@" UNIQUE_DIR=$@ JTREG_EXCLUSIONS="-exclude:ProblemList-hotspot.txt" jtreg_tests;
 
 # Prep for output
 prep: clean
@@ -263,9 +263,9 @@ endif
 JTREG = $(JT_HOME)/bin/jtreg
 
 # Only run automatic tests
-JTREG_BASIC_OPTIONS += -a
-# Report details on all failed or error tests, times too
-JTREG_BASIC_OPTIONS += -v:fail,error,time
+JTREG_BASIC_OPTIONS += -automatic
+# Report details on all failed or error tests
+JTREG_BASIC_OPTIONS += -verbose:fail,error,summary
 # Retain all files for failing tests
 JTREG_BASIC_OPTIONS += -retain:fail,error
 # Ignore tests are not run and completely silent about it

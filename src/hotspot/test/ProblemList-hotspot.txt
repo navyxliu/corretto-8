@@ -1,0 +1,33 @@
+#############################################################################
+#
+# List of quarantined tests -- tests that should not be run by default, because
+# they may fail due to known reason. The reason (CR#) must be mandatory specified.
+#
+# List items are testnames followed by labels, all MUST BE commented
+#   as to why they are here and use a label:
+#     generic-all   Problems on all platforms
+#     generic-ARCH  Where ARCH is one of: sparc, sparcv9, x64, i586, etc.
+#     OSNAME-all    Where OSNAME is one of: solaris, linux, windows, macosx, aix
+#     OSNAME-ARCH   Specific on to one OSNAME and ARCH, e.g. solaris-amd64
+#     OSNAME-REV    Specific on to one OSNAME and REV, e.g. solaris-5.8
+#
+# More than one label is allowed but must be on the same line.
+#
+#############################################################################
+
+# :hotspot_compiler
+compiler/ciReplay/TestSA.sh 8040696 generic-all
+
+applications/ctw/modules/java_desktop.java   8205016 windows-all
+applications/ctw/modules/java_desktop_2.java 8205016 windows-all
+applications/ctw/modules/jdk_jconsole.java   8205016 windows-all
+
+#############################################################################
+
+# :hotspot_gc
+
+#############################################################################
+
+# :hotspot_runtime
+
+#############################################################################
