@@ -174,6 +174,12 @@ public class WhiteBox {
   public native long incMetaspaceCapacityUntilGC(long increment);
   public native long metaspaceCapacityUntilGC();
 
+  // Don't use these methods directly
+  // Use sun.hotspot.gc.GC class instead.
+  public native boolean isGCSupported(int name);
+  public native boolean isGCSelected(int name);
+  public native boolean isGCSelectedErgonomically();
+
   // Force Young GC
   public native void youngGC();
 
@@ -242,5 +248,12 @@ public class WhiteBox {
   // Container testing
   public native boolean isContainerized();
   public native void printOsInfo();
+
+  public native boolean isCDSIncludedInVmBuild();
+  public native boolean isJFRIncludedInVmBuild();
+  public native boolean isJavaHeapArchiveSupported();
+
+  // Number of loaded AOT libraries
+  public native int aotLibrariesCount();
 
 }

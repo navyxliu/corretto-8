@@ -31,3 +31,7 @@ applications/ctw/modules/jdk_jconsole.java   8205016 windows-all
 # :hotspot_runtime
 
 #############################################################################
+
+# :hotspot_vmtest
+vmTestbase/jit/t/t105/t105.java  0123456 generic-all
+vmTestbase/jit/t/t113/TestDescription.java 0123456 generic-all

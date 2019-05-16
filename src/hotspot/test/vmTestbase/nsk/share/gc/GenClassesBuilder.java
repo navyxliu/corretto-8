@@ -52,6 +52,10 @@ public class GenClassesBuilder {
     }
 
     private static void compileSource(Path srcDst, Path classesDir) {
+        if (!classesDir.toFile().exists()) {
+            classesDir.toFile().mkdirs();
+        }
+
         JDKToolLauncher javac = JDKToolLauncher.create("javac")
                                                .addToolArg("-d")
                                                .addToolArg(classesDir.toString())

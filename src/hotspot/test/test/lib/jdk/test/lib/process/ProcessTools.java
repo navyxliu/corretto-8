@@ -46,6 +46,8 @@ import java.security.PrivilegedExceptionAction;
 import jdk.test.lib.JDKToolFinder;
 import jdk.test.lib.Utils;
 
+import vm.share.ProcessUtils;
+
 public final class ProcessTools {
     private static final class LineForwarder extends StreamPumper.LinePump {
         private final PrintStream ps;
@@ -255,10 +257,9 @@ public final class ProcessTools {
      *
      * @return Process id
      */
-    public static long getProcessId() throws Exception {
-        return ProcessHandle.current().pid();
+    public static int getProcessId() throws Exception {
+        return ProcessUtils.getPid();
     }
-
 
 
     /**
@@ -529,9 +530,8 @@ public final class ProcessTools {
             p.destroy();
         }
 
-        @Override
         public long pid() {
-            return p.pid();
+            return ProcessUtils.getPid(p);
         }
 
         @Override

@@ -64,7 +64,7 @@ public final class OutputAnalyzer {
      * @param file File to analyze
      */
     public OutputAnalyzer(Path file) throws IOException {
-        this(Files.readString(file));
+        this(new String(Files.readAllBytes(file)));
     }
 
     /**

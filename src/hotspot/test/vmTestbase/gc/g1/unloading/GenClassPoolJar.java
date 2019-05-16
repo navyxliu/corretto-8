@@ -183,6 +183,12 @@ public class GenClassPoolJar {
     void compile(File[] files, String destDir) throws IOException {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         List<String> optionList = new ArrayList<>();
+
+        File dst = new File(destDir);
+        if (!dst.exists()) {
+            dst.mkdirs();
+        }
+
         optionList.addAll(Arrays.asList("-d", destDir));
         StandardJavaFileManager sjfm = compiler.getStandardFileManager(null, null, null);
         Iterable<? extends JavaFileObject> fileObjects = sjfm.getJavaFileObjects(files);

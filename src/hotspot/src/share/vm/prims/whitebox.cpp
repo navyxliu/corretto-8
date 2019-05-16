@@ -790,6 +790,21 @@ WB_ENTRY(jboolean, WB_IsInStringTable(JNIEnv* env, jobject o, jstring javaString
   return (StringTable::lookup(name, len) != NULL);
 WB_END
 
+WB_ENTRY(jboolean, WB_IsGCSupported(JNIEnv* env, jobject o, jint name))
+  jboolean ret = true;
+  return ret;
+WB_END
+
+WB_ENTRY(jboolean, WB_IsGCSelected(JNIEnv* env, jobject o, jint name))
+  jboolean ret = true;
+  return ret;
+WB_END
+
+WB_ENTRY(jboolean, WB_IsGCSelectedErgonomically(JNIEnv* env, jobject o))
+  jboolean ret = true;
+  return ret;
+WB_END
+
 WB_ENTRY(void, WB_FullGC(JNIEnv* env, jobject o))
   Universe::heap()->collector_policy()->set_should_clear_all_soft_refs(true);
   Universe::heap()->collect(GCCause::_last_ditch_collection);
@@ -1038,6 +1053,42 @@ WB_ENTRY(void, WB_PrintOsInfo(JNIEnv* env, jobject o))
   os::print_os_info(tty);
 WB_END
 
+WB_ENTRY(jboolean, WB_IsCDSIncludedInVmBuild(JNIEnv* env))
+#if INCLUDE_CDS
+# ifdef _LP64
+    if (!UseCompressedOops || !UseCompressedClassPointers) {
+      // On 64-bit VMs, CDS is supported only with compressed oops/pointers
+      return false;
+    }
+# endif // _LP64
+  return true;
+#else
+  return false;
+#endif // INCLUDE_CDS
+WB_END
+
+WB_ENTRY(jboolean, WB_IsJFRIncludedInVmBuild(JNIEnv* env))
+  jboolean ret = false;
+//#if INCLUDE_JFR
+//  ret = true;
+//#endif // INCLUDE_JFR
+  return ret;
+WB_END
+
+WB_ENTRY(jboolean, WB_IsJavaHeapArchiveSupported(JNIEnv* env))
+//  return HeapShared::is_heap_object_archiving_allowed();
+  jboolean ret = false;
+  return ret;
+WB_END
+
+WB_ENTRY(jint, WB_AotLibrariesCount(JNIEnv* env, jobject o))
+  jint result = 0;
+//#if INCLUDE_AOT
+//  result = (jint) AOTLoader::heaps_count();
+//#endif
+  return result;
+WB_END
+
 #define CC (char*)
 
 static JNINativeMethod methods[] = {
@@ -1135,6 +1186,9 @@ static JNINativeMethod methods[] = {
   {CC"getStringVMFlag",    CC"(Ljava/lang/String;)Ljava/lang/String;",
                                                       (void*)&WB_GetStringVMFlag},
   {CC"isInStringTable",    CC"(Ljava/lang/String;)Z", (void*)&WB_IsInStringTable  },
+  {CC"isGCSupported",      CC"(I)Z",                  (void*)&WB_IsGCSupported},
+  {CC"isGCSelected",              CC"(I)Z",           (void*)&WB_IsGCSelected},
+  {CC"isGCSelectedErgonomically", CC"()Z",            (void*)&WB_IsGCSelectedErgonomically},
   {CC"fullGC",   CC"()V",                             (void*)&WB_FullGC },
   {CC"youngGC",  CC"()V",                             (void*)&WB_YoungGC },
   {CC"readReservedMemory", CC"()V",                   (void*)&WB_ReadReservedMemory },
@@ -1153,6 +1207,10 @@ static JNINativeMethod methods[] = {
                                                       (void*)&WB_CheckLibSpecifiesNoexecstack},
   {CC"isContainerized",           CC"()Z",            (void*)&WB_IsContainerized },
   {CC"printOsInfo",               CC"()V",            (void*)&WB_PrintOsInfo },
+  {CC"isCDSIncludedInVmBuild",            CC"()Z",    (void*)&WB_IsCDSIncludedInVmBuild },
+  {CC"isJFRIncludedInVmBuild",            CC"()Z",    (void*)&WB_IsJFRIncludedInVmBuild },
+  {CC"isJavaHeapArchiveSupported",        CC"()Z",    (void*)&WB_IsJavaHeapArchiveSupported },
+  {CC"aotLibrariesCount",                 CC"()I",    (void*)&WB_AotLibrariesCount },
 };
 
 #undef CC

@@ -43,6 +43,10 @@ public class GenClassesBuilder {
         Path genSrc = Paths.get("genSrc").toAbsolutePath();
         Path classesDir = Paths.get(Utils.TEST_CLASSES).toAbsolutePath();
         generateSource(genSrc);
+
+        if (!classesDir.toFile().exists()) {
+            classesDir.toFile().mkdirs();
+        }
         compileSource(genSrc, classesDir);
     }
 
