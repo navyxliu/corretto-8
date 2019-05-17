@@ -266,7 +266,14 @@ compact1_minimal = \
  -:needs_jdk
 
 hotspot_vmtest_jit = \
-  vmTestbase/jit/t/
+  vmTestbase/vm/compiler/ \
+  vmTestbase/jit/
 
 hotspot_vmtest_gc = \
   vmTestbase/gc/gctests/LargeObjects/large004/TestDescription.java
+
+hotspot_vmtest_vm = \
+  vmTestbase/vm/compiler/
+
+hotspot_vmtest_dummy = \
+  vmTestbase/vm/compiler/optimizations/stringconcat/explicit/Explicit01/

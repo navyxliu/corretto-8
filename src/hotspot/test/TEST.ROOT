@@ -27,7 +27,7 @@
 # It also contains test-suite configuration information.
 
 # The list of keywords supported in this test suite
-keys=cte_test jcmd nmt regression gc stress
+keys=cte_test jcmd nmt regression gc stress metaspace headful intermittent
 
 groups=TEST.groups [closed/TEST.groups]
 
@@ -57,6 +57,7 @@ requires.properties= \
     vm.hasSA \
     vm.hasSAandCanAttach \
     vm.hasJFR \
+    vm.hasCompactString \
     vm.rtm.cpu \
     vm.rtm.compiler \
     vm.aot \

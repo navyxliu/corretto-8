@@ -25,7 +25,7 @@ package vm.compiler.coverage.parentheses.share;
 import java.lang.reflect.Field;
 import jdk.internal.org.objectweb.asm.ClassWriter;
 import jdk.internal.org.objectweb.asm.MethodVisitor;
-import jdk.internal.misc.Unsafe;
+import sun.misc.Unsafe;
 
 import static jdk.internal.org.objectweb.asm.Opcodes.*;
 
@@ -75,6 +75,12 @@ public class HotspotInstructionsExecutor implements InstructionsExecutor {
     }
 
     private static Unsafe getUnsafe() {
-        return Unsafe.getUnsafe();
+        try {
+            Field f = Unsafe.class.getDeclaredField("theUnsafe");
+            f.setAccessible(true);
+            return (Unsafe)f.get(null);
+        } catch(Exception e) {
+            throw new RuntimeException("Unsafe", e);
+        }
     }
 }

@@ -101,6 +101,7 @@ public class VMProps implements Callable<Map<String, String>> {
         // vm.hasJFR is "true" if JFR is included in the build of the VM and
         // so tests can be executed.
         map.put("vm.hasJFR", this::vmHasJFR);
+        map.put("vm.hasCompactString", this::vmHasCompactString);
         map.put("vm.cpu.features", this::cpuFeatures);
         map.put("vm.rtm.cpu", this::vmRTMCPU);
         map.put("vm.rtm.compiler", this::vmRTMCompiler);
@@ -322,6 +323,13 @@ public class VMProps implements Callable<Map<String, String>> {
         return "" + WB.isJFRIncludedInVmBuild();
     }
 
+ /**
+     * @return "true" if the VM implements JEP 254: Compact Strings
+     * support.
+     */
+    protected String vmHasCompactString() {
+        return "false";
+    }
     /**
      * @return true if compiler in use supports RTM and false otherwise.
      */

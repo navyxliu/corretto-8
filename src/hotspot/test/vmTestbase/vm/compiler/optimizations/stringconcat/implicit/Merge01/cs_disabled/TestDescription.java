@@ -31,6 +31,6 @@
  * @library /vmTestbase
  *          /test/lib
  * @run driver jdk.test.lib.FileInstaller . .
- * @run main/othervm -XX:-CompactStrings vm.compiler.optimizations.stringconcat.implicit.Merge01
+ * @run main/othervm -XX:+IgnoreUnrecognizedVMOptions -XX:-CompactStrings vm.compiler.optimizations.stringconcat.implicit.Merge01
  */
 

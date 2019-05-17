@@ -28,6 +28,8 @@
  * @summary converted from VM Testbase vm/compiler/optimizations/stringconcat/implicit/Implicit01/cs_enabled.
  * VM Testbase keywords: [jit, quick]
  *
+ *
+ * @requires vm.hasCompactString
  * @library /vmTestbase
  *          /test/lib
  * @run driver jdk.test.lib.FileInstaller . .
