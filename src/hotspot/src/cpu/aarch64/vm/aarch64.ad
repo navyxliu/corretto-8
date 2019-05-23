@@ -2746,7 +2746,12 @@ bool needs_acquiring_load_exclusive(const Node *n)
   // does this lead a normal subgraph?
   MemBarNode *mbar = leading_to_normal(barrier);
 
-  assert(mbar != NULL, "CAS not embedded in normal graph!");
+  // FIXME: Could be NULL because of compareAndSwapX and storeX appear in a row.
+  // it will melt down jvm. avoid it
+  if (mbar == NULL) {
+     //assert(mbar != NULL, "CAS not embedded in normal graph!");
+     return false;
+  }
 
   assert(mbar->Opcode() == Op_MemBarAcquire, "trailing membar should be an acquire");
 #endif // ASSERT

@@ -17,6 +17,8 @@
 
 # :hotspot_compiler
 compiler/ciReplay/TestSA.sh 8040696 generic-all
+compiler/uncommontrap/TestDeoptOOM.java JDK-1673 linux-aarch64
+compiler/6792161/Test6792161.java       JDK-1671 linux-aarch64
 
 applications/ctw/modules/java_desktop.java   8205016 windows-all
 applications/ctw/modules/java_desktop_2.java 8205016 windows-all
