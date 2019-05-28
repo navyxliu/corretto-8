@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -53,6 +54,7 @@ import java.util.stream.Stream;
  * for creating and manipulating JAR files.
  */
 public final class JarUtils {
+    private static final int DEFAULT_BUFFER_SIZE = 8192;
     private JarUtils() { }
 
     /**
@@ -159,7 +161,7 @@ public final class JarUtils {
                     JarEntry jentry = jentries.nextElement();
                     if (!names.contains(jentry.getName())) {
                         jos.putNextEntry(jentry);
-                        jf.getInputStream(jentry).transferTo(jos);
+                        transferTo(jf.getInputStream(jentry), jos);
                     }
                 }
             }
@@ -202,7 +204,7 @@ public final class JarUtils {
                 // add an archive entry, and write a file
                 jos.putNextEntry(new JarEntry(file));
                 try (FileInputStream fis = new FileInputStream(file)) {
-                    fis.transferTo(jos);
+                    transferTo(fis, jos);
                 } catch (FileNotFoundException e) {
                     jos.write(file.getBytes());
                 }
@@ -292,7 +294,7 @@ public final class JarUtils {
                     } else {
                         System.out.println(String.format("- Copy %s", name));
                         jos.putNextEntry(entry);
-                        srcJarFile.getInputStream(entry).transferTo(jos);
+                        transferTo(srcJarFile.getInputStream(entry), jos);
                     }
                 }
             }
@@ -317,7 +319,10 @@ public final class JarUtils {
             throws IOException {
         ByteArrayOutputStream bout = new ByteArrayOutputStream();
         man.write(bout);
-        updateJar(src, dest, Map.of(JarFile.MANIFEST_NAME, bout.toByteArray()));
+
+        Map<String, Object> manifest = new HashMap<>();
+        manifest.put(JarFile.MANIFEST_NAME, bout.toByteArray());
+        updateJar(src, dest, manifest);
     }
 
     private static void updateEntry(JarOutputStream jos, String name, Object content)
@@ -329,7 +334,7 @@ public final class JarUtils {
         } else {
             jos.putNextEntry(new JarEntry(name));
             if (content instanceof Path) {
-                Files.newInputStream((Path) content).transferTo(jos);
+                transferTo(Files.newInputStream((Path) content), jos);
             } else if (content instanceof byte[]) {
                 jos.write((byte[]) content);
             } else if (content instanceof String) {
@@ -360,5 +365,17 @@ public final class JarUtils {
             }
         }
         return entries;
+    }
+
+    public static long transferTo(InputStream in , OutputStream out) throws IOException {
+        //Objects.requireNonNull(out, "out");
+        long transferred = 0;
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        int read;
+        while ((read = in.read(buffer, 0, DEFAULT_BUFFER_SIZE)) >= 0) {
+            out.write(buffer, 0, read);
+            transferred += read;
+        }
+        return transferred;
     }
 }

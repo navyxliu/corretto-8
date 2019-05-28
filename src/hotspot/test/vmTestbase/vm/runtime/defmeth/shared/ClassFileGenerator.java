@@ -327,8 +327,9 @@ public class ClassFileGenerator implements Visitor {
                 /* tag */ callSite.invokeInsn().tag(),
                 /* owner */ callSite.staticClass().intlName(),
                 /* name */ callSite.methodName(),
-                /* desc */ callSite.methodDesc(),
-                /* interface */ callSite.isInterface());
+                /* desc */ callSite.methodDesc());
+// FIXME: asm in jdk8u doesn't support Interface.
+//             /* interface */ callSite.isInterface());
     }
 
     private Handle generateBootstrapMethod(CallMethod callSite) {

@@ -48491,7 +48491,8 @@ $as_echo "$has_dynamic_libstdcxx" >&6; }
     # Test if stdc++ can be linked statically.
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking if static link of stdc++ is possible" >&5
 $as_echo_n "checking if static link of stdc++ is possible... " >&6; }
-    STATIC_STDCXX_FLAGS="-Wl,-Bstatic -lstdc++ -lgcc -Wl,-Bdynamic"
+    #STATIC_STDCXX_FLAGS="-Wl,-Bstatic -lstdc++ -lgcc -Wl,-Bdynamic"
+    STATIC_STDCXX_FLAGS="-static-libstdc++"
     ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
 ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'

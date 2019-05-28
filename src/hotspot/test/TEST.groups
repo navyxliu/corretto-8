@@ -138,7 +138,8 @@ hotspot_gc = \
   -gc/g1/TestGreyReclaimedHumongousObjects.java
 
 hotspot_runtime = \
-  sanity/ExecuteInternalVMTests.java
+  sanity/ExecuteInternalVMTests.java \
+  runtime
 
 hotspot_serviceability = \
   sanity/ExecuteInternalVMTests.java
@@ -272,8 +273,8 @@ hotspot_vmtest_jit = \
 hotspot_vmtest_gc = \
   vmTestbase/gc/gctests/LargeObjects/large004/TestDescription.java
 
-hotspot_vmtest_vm = \
-  vmTestbase/vm/compiler/
+hotspot_vmtest_runtime = \
+  vmTestbase/vm/runtime
 
 hotspot_vmtest_dummy = \
-  vmTestbase/vm/compiler/optimizations/stringconcat/explicit/Explicit01/
+  vmTestbase/vm/runtime/defmeth/scenarios/Stress_redefine/TestDescription.java

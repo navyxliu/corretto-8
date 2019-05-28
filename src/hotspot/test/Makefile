@@ -296,6 +296,7 @@ jtreg_tests: prep $(PRODUCT_HOME) $(JTREG)
               -r:$(shell $(GETMIXEDPATH) "$(ABS_TEST_OUTPUT_DIR)/JTreport")  \
               -w:$(shell $(GETMIXEDPATH) "$(ABS_TEST_OUTPUT_DIR)/JTwork")    \
               -jdk:$(shell $(GETMIXEDPATH) "$(PRODUCT_HOME)")                \
+              -nativepath:$(ALT_OUTPUTDIR)/support/test/hotspot/jtreg/native/lib       \
               $(JTREG_EXCLUSIONS)                                            \
               $(JTREG_TEST_OPTIONS)                                          \
               $(TEST_SELECTION)                                              \

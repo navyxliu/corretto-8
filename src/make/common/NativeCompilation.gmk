@@ -150,6 +150,7 @@ define SetupNativeCompilation
   #   EXCLUDES do not pick source from these directories
   #   INCLUDE_FILES only compile exactly these files!
   #   EXCLUDE_FILES with these names
+  #   EXTRA_FILES List of extra files not in any of the SRC dirs
   #   VERSIONINFO_RESOURCE Input file for RC. Setting this implies that RC will be run
   #   RC_FLAGS flags for RC.
   #   MAPFILE mapfile
@@ -280,6 +281,9 @@ define SetupNativeCompilation
   ifneq (,$$(strip $$($1_INCLUDE_FILES)))
     $1_SRCS := $$(filter $$($1_INCLUDE_FILES),$$($1_SRCS))
   endif
+
+  $1_SRCS += $$($1_EXTRA_FILES)
+
   ifeq (,$$($1_SRCS))
     $$(error No sources found for $1 when looking inside the dirs $$($1_SRC))
   endif
