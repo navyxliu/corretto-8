@@ -23,8 +23,7 @@
 package vm.share;
 
 import java.lang.reflect.Field;
-
-import jdk.internal.misc.Unsafe;
+import sun.misc.Unsafe;
 
 @SuppressWarnings("restriction")
 public class UnsafeAccess {
@@ -32,9 +31,11 @@ public class UnsafeAccess {
 
     static {
         try {
-            unsafe = Unsafe.getUnsafe();
-        } catch ( Exception e ) {
-            e.printStackTrace();
+            Field f = Unsafe.class.getDeclaredField("theUnsafe");
+            f.setAccessible(true);
+            unsafe = (Unsafe)f.get(null);
+        } catch(Exception e) {
+            throw new RuntimeException("Unsafe", e);
         }
     }
 

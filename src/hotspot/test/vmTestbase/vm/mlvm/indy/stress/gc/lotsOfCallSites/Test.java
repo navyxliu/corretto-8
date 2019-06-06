@@ -30,6 +30,7 @@
  *
  * @library /vmTestbase
  *          /test/lib
+ *          /testlibrary
  * @run driver jdk.test.lib.FileInstaller . .
  * @build sun.hotspot.WhiteBox
  * @run driver ClassFileInstaller sun.hotspot.WhiteBox

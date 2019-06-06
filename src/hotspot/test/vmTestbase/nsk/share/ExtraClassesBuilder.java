@@ -36,13 +36,21 @@ import java.util.stream.Stream;
 
 public class ExtraClassesBuilder {
     public static void main(String[] args) {
-        String[] javacOpts = Arrays.stream(args)
-                                   .takeWhile(s -> s.startsWith("-"))
-                                   .toArray(String[]::new);
+        String[] javacOpts;
+        int size = args.length;
 
-        Arrays.stream(args)
-              .dropWhile(s -> s.startsWith("-"))
-              .forEach(s -> ExtraClassesBuilder.compile(s, javacOpts));
+        for (int i = 0; i < args.length; ++i) {
+            if (!args[i].startsWith("-")) {
+                size = i;
+                break;
+            }
+        }
+
+        javacOpts = new String[size];
+        System.arraycopy(args, 0, javacOpts, 0, size);
+        for (int i=size; i < args.length; ++i) {
+            ExtraClassesBuilder.compile(args[i], javacOpts);
+        }
     }
 
     private static void compile(String name, String[] args) {

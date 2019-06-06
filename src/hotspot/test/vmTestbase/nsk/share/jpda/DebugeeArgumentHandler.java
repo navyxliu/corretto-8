@@ -27,7 +27,7 @@ import nsk.share.*;
 
 import java.io.*;
 import java.net.ServerSocket;
-
+import vm.share.ProcessUtils;
 /**
  * Parser for JPDA test's launching and connection arguments.
  * <p>
@@ -213,7 +213,7 @@ public class DebugeeArgumentHandler extends ArgumentParser {
     // Use a unique id for this process by default. This makes sure that
     // tests running concurrently do not use the same shared name.
     private static String defaultTransportSharedName
-            = "nskjpdatestchannel" + ProcessHandle.current().pid();
+            = "nskjpdatestchannel" + ProcessUtils.getPid();
     public String getTransportSharedName() {
         return options.getProperty("transport.shname", defaultTransportSharedName);
     }

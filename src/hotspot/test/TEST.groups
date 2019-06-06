@@ -273,8 +273,14 @@ hotspot_vmtest_jit = \
 hotspot_vmtest_gc = \
   vmTestbase/gc/gctests/LargeObjects/large004/TestDescription.java
 
+hotspot_vmtest_mlvm = \
+  vmTestbase/vm/mlvm
+
 hotspot_vmtest_runtime = \
   vmTestbase/vm/runtime
 
 hotspot_vmtest_dummy = \
-  vmTestbase/vm/runtime/defmeth/scenarios/Stress_redefine/TestDescription.java
+  vmTestbase/vm/runtime/defmeth/scenarios/Stress_redefine/TestDescription.java \
+  vmTestbase/vm/mlvm/meth/stress/jdi/breakpointInCompiledCode/Test.java \
+  vmTestbase/vm/mlvm/indy/func/jvmti/mergeCP_indy2none_b/TestDescription.java \
+  vmTestbase/vm/mlvm/indy/stress/gc/lotsOfCallSites/Test.java

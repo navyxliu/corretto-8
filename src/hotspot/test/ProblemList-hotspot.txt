@@ -149,4 +149,12 @@ vmTestbase/vm/runtime/defmeth/scenarios/SuperCall_v52_syncstrict_invoke_noredefi
 # :hotspot_vmtest
 vmTestbase/jit/t/t105/t105.java  0123456 generic-all
 vmTestbase/jit/t/t113/TestDescription.java 0123456 generic-all
+# headful
 vmTestbase/jit/misctests/fpustack/GraphApplet.java 0123456 generic-all
+
+vmTestbase/vm/mlvm/meth/stress/jdi/breakpointInCompiledCode/Test.java 0123456 generic-all
+vmTestbase/vm/mlvm/indy/func/jdi/breakpoint/Test.java 0123456 generic-all
+vmTestbase/vm/mlvm/indy/func/jdi/breakpointOtherStratum/Test.java 0123456 generic-all
+vmTestbase/vm/mlvm/indy/stress/jdi/breakpointInCompiledCode/Test.java 0123456 generic-all
+vmTestbase/vm/mlvm/meth/func/jdi/breakpoint/Test.java 0123456 generic-all
+vmTestbase/vm/mlvm/meth/func/jdi/breakpointOtherStratum/Test.java 0123456 generic-all
