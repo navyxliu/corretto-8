@@ -158,3 +158,9 @@ vmTestbase/vm/mlvm/indy/func/jdi/breakpointOtherStratum/Test.java 0123456 generi
 vmTestbase/vm/mlvm/indy/stress/jdi/breakpointInCompiledCode/Test.java 0123456 generic-all
 vmTestbase/vm/mlvm/meth/func/jdi/breakpoint/Test.java 0123456 generic-all
 vmTestbase/vm/mlvm/meth/func/jdi/breakpointOtherStratum/Test.java 0123456 generic-all
+
+vmTestbase/vm/mlvm/indy/stress/java/mutableCallSiteDekker/TestDescription.java JDK-1714 linux-aarch64
+vmTestbase/vm/mlvm/indy/stress/java/volatileCallSiteDekker/TestDescription.java JDK-1714 linux-aarch64
+vmTestbase/vm/mlvm/meth/stress/compiler/deoptimize/Test.java JDK-1714 linux-aarch64
+vmTestbase/vm/mlvm/meth/stress/compiler/i2c_c2i/Test.java JDK-1714 linux-aarch64
+vmTestbase/vm/mlvm/meth/stress/compiler/sequences/Test.java JDK-1714 linux-aarch64
